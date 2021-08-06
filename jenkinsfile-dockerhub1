@@ -1,20 +1,18 @@
 pipeline {
+    agent any
 
-agent any
-    stage('Building image') {
-        steps{
-           script {
-              bat echo "image build"
-         }
-           }
-           }
-     stage('Deploy Image') {
-          steps {
-              script { 
-                 bat  echo "image deploy"
-               } 
-                 }
-                   } 
-                
-       } 
+    stages {
+        stage('Build an image') {
+            steps {
+                echo 'Image build'
+            }
+        }
+       stage('Deploy an image') {
+            steps {
+                echo 'Image Deployed'
+            }
+        }
+    }
+}
+
       
