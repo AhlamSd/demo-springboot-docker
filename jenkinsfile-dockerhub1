@@ -1,0 +1,20 @@
+pipeline {
+
+agent any
+    stage('Building image') {
+        steps{
+           script {
+             echo "image build"
+         }
+           }
+           }
+     stage('Deploy Image') {
+          steps {
+              script { 
+                   echo "image deploy"
+               } 
+                 }
+                   } 
+                   }
+       } 
+      
