@@ -4,12 +4,12 @@ pipeline {
     stages {
         stage('Build an image') {
             steps {
-               bat echo 'Image build'
+                echo 'Image build'
             }
         }
        stage('Deploy an image') {
             steps {
-               bat echo 'Image Deployed'
+                echo 'Image Deployed'
             }
         }
     }
