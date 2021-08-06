@@ -5,7 +5,7 @@ pipeline {
             steps {
                 bat "rmdir  /s /q demo-springboot-docker"
                 bat "git clone https://github.com/AhlamSd/demo-springboot-docker.git"
-                // bat "mvn clean -f demo-springboot-docker"
+                bat "mvn clean -f demo-springboot-docker"
             }
         }
         stage('install') {
