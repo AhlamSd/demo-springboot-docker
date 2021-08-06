@@ -4,21 +4,23 @@ pipeline {
         stage('build') {
             steps {
             
-                bat "docker build -t springboot-docker ."
+                bat "docker build -t springboot-docker-jenkins ."
             }
         }
         
         stage('dockerhub') {
             steps {
                 
-                bat "docker push ahlamsd/docker-jenkins:springboot-docker"
+               // bat "docker push ahlamsd/docker-jenkins:springboot-docker"
+                 bat  docker.withRegistry( springboot-docker-jenkins, ahlamsd/docker-jenkins ) {
+                 bat  dockerImage.push()
             }
         }
         
         stage('run') {
             steps {
                 
-                bat "docker run -p 8181:8181 springboot-docker"
+                bat "docker run -p 8181:8181 springboot-docker-jenkins"
             }
         }
         
