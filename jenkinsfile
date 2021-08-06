@@ -3,23 +3,29 @@ pipeline {
     stages {
         stage('git repo & clean') {
             steps {
+                // Supprimer le répertoire s'il existe déjà
                 bat "rmdir  /s /q demo-springboot-docker"
+                // Clonage du dépôt 
                 bat "git clone https://github.com/AhlamSd/demo-springboot-docker.git"
+                // Nettoyage
                 bat "mvn clean -f demo-springboot-docker"
             }
         }
         stage('install') {
             steps {
+                // Installation
                 bat "mvn install -f demo-springboot-docker"
             }
         }
         stage('test') {
             steps {
+                // test
                 bat "mvn test -f demo-springboot-docker"
             }
         }
         stage('package') {
             steps {
+                // Packager
                 bat "mvn package -f demo-springboot-docker"
             }
         }
