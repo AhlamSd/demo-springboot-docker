@@ -7,18 +7,21 @@ pipeline {
                 bat "docker build -t springboot-docker ."
             }
         }
-        stage('run') {
-            steps {
-                
-                bat "docker run -p 8181:8181 springboot-docker"
-            }
-        }
+        
         stage('dockerhub') {
             steps {
                 
                 bat "docker push ahlamsd/docker-jenkins:springboot-docker"
             }
         }
+        
+        stage('run') {
+            steps {
+                
+                bat "docker run -p 8181:8181 springboot-docker"
+            }
+        }
+        
        
     }
 }
