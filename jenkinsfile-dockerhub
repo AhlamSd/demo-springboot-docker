@@ -5,6 +5,14 @@ environment {
       dockerImage = ''
 }
 agent any
+  stages {
+     stage('Cloning Git') {
+        steps {
+        git([url: 'https://github.com/AhlamSd/demo-springboot-docker.git', branch: 'master', credentialsId: 'ahlamsd-github-user-token'])
+     }
+     } 
+     
+    // Building Docker images
     stage('Building image') {
         steps{
            script {
@@ -12,7 +20,9 @@ agent any
          }
            }
            }
-     stage('Deploy Image') {
+           
+    // Uploading Docker images into Docker Hub
+    stage('Upload Image') {
           steps {
               script { 
                    docker.withRegistry( '', registryCredential ) {
@@ -21,6 +31,27 @@ agent any
                } 
                  }
                    } 
-                   }
+               }
+               
+     // Stopping Docker containers for cleaner Docker run
+     stage('docker stop container') {
+         steps {
+            sh 'docker ps -f name=demo-springboot-dockerContainer -q | xargs --no-run-if-empty docker container stop'
+            sh 'docker container ls -a -fname=demo-springboot-dockerContainer -q | xargs -r docker container rm'
+         }
+       }
+    
+    
+    // Running Docker container, make sure port 8181 is opened in 
+    stage('Docker Run') {
+     steps{
+         script {
+            dockerImage.run("-p 8181:8181 --rm --namespringboot-dockerContainer")
+         }
+      }
+    }       
+               
+           
+             }
        } 
       
