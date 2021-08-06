@@ -4,14 +4,14 @@ agent any
     stage('Building image') {
         steps{
            script {
-             echo "image build"
+              bat echo "image build"
          }
            }
            }
      stage('Deploy Image') {
           steps {
               script { 
-                   echo "image deploy"
+                 bat  echo "image deploy"
                } 
                  }
                    } 
