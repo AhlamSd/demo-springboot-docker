@@ -7,7 +7,7 @@ pipeline {
                 bat "docker build -t springboot-docker"
             }
         }
-        stage('build') {
+        stage('run') {
             steps {
                 
                 bat "docker run -p 8181:8181 springboot-docker"
