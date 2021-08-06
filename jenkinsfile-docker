@@ -12,7 +12,7 @@ pipeline {
             steps {
                 
                // bat "docker push ahlamsd/docker-jenkins:springboot-docker"
-                 bat  docker.withRegistry( springboot-docker-jenkins, ahlamsd/docker-jenkins ) {
+                 bat  docker.withRegistry( springboot-docker-jenkins, ahlamsd/docker-jenkins1 ) {
                  bat  dockerImage.push()
             }
         }
