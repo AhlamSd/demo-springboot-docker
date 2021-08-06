@@ -13,7 +13,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build registry
+         bat dockerImage = docker.build registry
         }
       }
     }
@@ -22,8 +22,8 @@ pipeline {
     stage('Upload Image') {
      steps{    
          script {
-            docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
+           bat docker.withRegistry( '', registryCredential ) {
+           bat dockerImage.push()
             }
         }
       }
