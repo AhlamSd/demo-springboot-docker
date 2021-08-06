@@ -4,7 +4,7 @@ pipeline {
         stage('build') {
             steps {
             
-                bat "docker build -t springboot-docker-jenkins ."
+                bat "docker build -t springboot-docker-jenkins1 ."
             }
         }
         
@@ -20,7 +20,7 @@ pipeline {
         stage('run') {
             steps {
                 
-                bat "docker run -p 8181:8181 springboot-docker-jenkins"
+                bat "docker run -p 8181:8181 springboot-docker-jenkins1"
             }
         }
     }
