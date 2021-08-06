@@ -1,33 +1,26 @@
 pipeline {
-    agent any 
-    environment {
-        //once you sign up for Docker hub, use that user_id here
-        registry = "ahlamsd/jenkins-dockerhub"
-        //- update your credentials ID after creating credentials for connecting to Docker Hub
-        registryCredential = 'ahlamsd/AhlamFatiha06'
-        dockerImage = ''
-    }
-    
-    
-    // Building Docker images
+environment {
+      imagename = "ahlamsd/springboot-docker-jenkins1"
+      registryCredential = 'docker-hub'
+      dockerImage = ''
+}
+agent any
     stage('Building image') {
-      steps{
-        script {
-         bat dockerImage = docker.build registry
-        }
+        steps{
+           script {
+             dockerImage = docker.build imagename
+         }
+           }
+           }
+     stage('Deploy Image') {
+          steps {
+              script { 
+                   docker.withRegistry( '', registryCredential ) {
+                   dockerImage.push("$BUILD_NUMBER")
+                   dockerImage.push('latest')
+               } 
+                 }
+                   } 
+                   }
+       } 
       }
-    }
-    
-     // Uploading Docker images into Docker Hub
-    stage('Upload Image') {
-     steps{    
-         script {
-           bat docker.withRegistry( '', registryCredential ) {
-           bat dockerImage.push()
-            }
-        }
-      }
-    }
-    
-   
-  }
