@@ -5,10 +5,24 @@ pipeline {
         stage('Build an image') {
             steps {
                 echo 'Image build'
+                echo 'Image build'
+                echo 'Image build'
+                echo 'Image build'
+                echo 'Image build'
+                echo 'Image build'
+                echo 'Image build'
+                echo 'Image build'
             }
         }
        stage('Deploy an image') {
             steps {
+                echo 'Image Deployed'
+                echo 'Image Deployed'
+                echo 'Image Deployed'
+                echo 'Image Deployed'
+                echo 'Image Deployed'
+                echo 'Image Deployed'
+                echo 'Image Deployed'
                 echo 'Image Deployed'
             }
         }
