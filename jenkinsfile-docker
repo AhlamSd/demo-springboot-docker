@@ -23,7 +23,5 @@ pipeline {
                 bat "docker run -p 8181:8181 springboot-docker-jenkins"
             }
         }
-        
-       
     }
 }
