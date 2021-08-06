@@ -36,8 +36,8 @@ agent any
      // Stopping Docker containers for cleaner Docker run
      stage('docker stop container') {
          steps {
-            sh 'docker ps -f name=demo-springboot-dockerContainer -q | xargs --no-run-if-empty docker container stop'
-            sh 'docker container ls -a -fname=demo-springboot-dockerContainer -q | xargs -r docker container rm'
+            sh 'docker ps -f name=springboot-docker-jenkins1Container -q | xargs --no-run-if-empty docker container stop'
+            sh 'docker container ls -a -fname=springboot-docker-jenkins1Container -q | xargs -r docker container rm'
          }
        }
     
@@ -46,7 +46,7 @@ agent any
     stage('Docker Run') {
      steps{
          script {
-            dockerImage.run("-p 8181:8181 --rm --namespringboot-dockerContainer")
+            dockerImage.run("-p 8181:8181 --rm --name springboot-docker-jenkins1Container")
          }
       }
     }       
