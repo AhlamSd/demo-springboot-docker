@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('git repo & clean') {
             steps {
-                //  bat "rmdir  /s /q demo-springboot-docker"
+                bat "rmdir  /s /q demo-springboot-docker"
                 bat "git clone https://github.com/AhlamSd/demo-springboot-docker.git"
                 bat "mvn clean -f demo-springboot-docker"
             }
